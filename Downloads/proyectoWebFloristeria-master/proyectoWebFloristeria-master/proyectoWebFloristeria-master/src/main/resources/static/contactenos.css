@@ -1,0 +1,56 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9; /* Fondo blanco */
+    margin: 0;
+    padding: 0;
+}
+ 
+.contactenos-container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border: 1px solid #d3d3d3; /* Borde gris claro */
+}
+ 
+h1 {
+    text-align: center;
+    color: #333333; /* Texto gris oscuro */
+}
+ 
+.contacto-info {
+    margin-bottom: 30px;
+    background-color: #fffaf0; /* Fondo crema */
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #d3d3d3; /* Borde gris claro */
+}
+ 
+.contacto-info p {
+    font-size: 16px;
+    color: #555555; /* Texto gris medio */
+    margin: 5px 0;
+}
+ 
+.contacto-info a {
+    color: #007bff; /* Enlaces azul */
+    text-decoration: none;
+}
+ 
+.contacto-info a:hover {
+    text-decoration: underline;
+}
+ 
+.contacto-imagen {
+    text-align: center;
+    margin-top: 20px;
+}
+ 
+.contacto-imagen img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid #d3d3d3; /* Borde gris claro */
+}
