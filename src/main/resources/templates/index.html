@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--
+Index del proyecto de la floristeria
+-->
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Floristeria Da'Paz</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <div th:replace="~{layout/plantilla :: carrusel-fotos}"/>
+        <section th:replace="~{layout/plantilla :: informacion-varia}"/>
+        
+        
+        <footer th:replace="~{layout/plantilla :: footer}" />
+    </body>
+</html>
