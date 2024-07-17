@@ -45,8 +45,9 @@ public class CategoriaController {
             categoria.setRutaImagen(rutaImagen);
         }
         categoriaService.save(categoria);
-        return "redirect:/categoria/listado";
+        return "redirect:/producto/listado";
     }
+    
 
     @GetMapping("/eliminar/{idCategoria}")
     public String eliminar(Categoria categoria) {

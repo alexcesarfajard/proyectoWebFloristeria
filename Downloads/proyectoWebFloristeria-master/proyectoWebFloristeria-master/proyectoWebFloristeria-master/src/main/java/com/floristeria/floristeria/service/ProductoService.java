@@ -5,18 +5,28 @@ import java.util.List;
 
 public interface ProductoService {
     
-    //Se enuncia un metodo que recupera los registros de la tabla producto dentro de un arraylist,
-    //pueden ser todos los registros o sólo los activos
-    public List<Producto> getProductos(boolean activos);
+    // El siguiente metodo retorna una lista con las productos 
+    //que estan en la tabla producto,todas o solo los activos
+    public List<Producto>getProductos(boolean activos);
     
-    //Se obtiene un registro de la tabla producto en un objeto Producto si el idProducto existe... si no, 
-    //se pasa un null
+    //Aca siguen los metodos para hacer un CRUD de la tabla productos
+    
+     // Se obtiene un Producto, a partir del id de un producto
     public Producto getProducto(Producto producto);
     
-    //Se crea un nuevo registro en producto si el objeto Producto NO tiene idProducto (vacio)
-    //Se actualiza el registro en la tabla producto si el objeto Producto tiene un idProducto
+    // Se inserta un nuevo producto si el id del producto esta vacío
+    // Se actualiza un producto si el id del producto NO esta vacío
     public void save(Producto producto);
     
-    //Se elimina el registro que tiene idProducto
+    // Se elimina el producto que tiene el id pasado por parámetro
     public void delete(Producto producto);
+    
+    //Se enuncia un método para recuperar los productos con una consulta ampliada
+    public List<Producto>buscaProductosPorPrecioEntre(double precioInf, double precioSup);
+    
+    //Se enuncia un método para recuperar los productos con una consulta JPQL
+    public List<Producto>consultaJPQL(double precioInf, double precioSup);
+    
+    //Se enuncia un método para recuperar los productos con una consulta SQL
+    public List<Producto>consultaSQL(double precioInf, double precioSup);
 }

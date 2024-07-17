@@ -1,22 +1,87 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<head th:replace="~{layout/plantilla :: head}">
-<title>Contactenos - Floristeria Da'Paz</title>
-</head>
-<body>
-    <section>
-<div class="contactenos-container">
-<h1>Contactenos</h1>
-<div class="contacto-info">
-<p><strong>Facebook:</strong> <a href="https://www.facebook.com/dapazflores" target="_blank">Floristeria Da'Paz</a></p>
-<p><strong>WhatsApp:</strong> <a href="tel:+50689214999">8921 4999</a></p>
-<p><strong>Dirección:</strong> 50 norte y 25 oeste de la plaza de deportes Patarra, Desamparados, Costa Rica</p>
-</div>
-<div class="contacto-imagen">
-<img src="img/flores-bonitas.jpg" alt="Floristeria Da'Paz"/>
-</div>
-</div>
-        </section>
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Contactenos - Floristeria Da'Paz</title>
+    </head>
+
+    <!-- ESTE ES EL HEADER DE LAS PAGINAS -->
+    <header th:fragment="header" style="border-bottom: 1px solid #ccc; padding: 20px 0; background-color: #fafafb">
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
+                <a class="navbar-brand" href="/">Floristeria Da'Paz</a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav d-flex flex-row">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/categoria/listado">Categorias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/producto/listado">Productos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/catalogo/listado">Catalogo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/contactanos.html">Contactenos</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <body>
+        <div class="container text-center" style="background-color: #F4F4F4; color: black;">
+            <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3">
+                <div class="col-md-8 mx-auto my-5">
+                    <h1 class="display-5 fw-bold text-body-emphasis text-center" style="color: black">En Floristeria Da'Paz</h1>
+                    <p class="lead fw-normal mt-3" style="color: black">"En verdad, eos y acusación, y justo odio..."</p>
+                </div>
+
+            </div>
+
+            <div class="contacto-imagen text-center">
+                <img src="img/flores-bonitas.jpg" alt="Floristeria Da'Paz" class="img-fluid" />
+            </div>
+
+            <div class="container mt-4">
+                <div class="row">
+                    <div class="col-lg-8 col-md-10 mx-auto">
+                        <h2 class="text-body-emphasis fw-bold text-center">Testimonios</h2>
+                        <p class="lh-lg">1.</p>
+                        <p class="lh-lg">2.</p>
+                        <p class="lh-lg">3.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contactenos-container">
+                <h1>Contactenos</h1>
+                <div class="contacto-info">
+                    <p><strong>Facebook:</strong> <a href="https://www.facebook.com/dapazflores" target="_blank">Floristeria Da'Paz</a></p>
+                    <p><strong>WhatsApp:</strong> <a href="tel:+50689214999">8921 4999</a></p>
+                </div>
+            </div>
+
+
+                <div class="container mt-4">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-10 mx-auto">
+                            <h2 class="text-body-emphasis fw-bold text-center">Ubicaciones:</h2>
+                            <h4><small class="text-body-secondary text-center">50 norte y 25 oeste de la plaza de deportes Patarra, Desamparados, Costa Rica</small></h4>
+                            <div class="embed-responsive embed-responsive-4by3 mx-auto">       
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1652.6206781374933!2d-84.03602678416836!3d9.88250270829822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e237793442bb%3A0xa3dc7ee8ad61a1f6!2sPlaza%20de%20f%C3%BAtbol%20Patarr%C3%A1!5e0!3m2!1ses!2scr!4v1721167964657!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+    <footer th:fragment="footer" style="background-color: slategray; text-align: center; margin-top: 20px; padding: 15px 0;">
+        <h3 style="font-size: 14px;">&copy Derechos reservados. Creado por grupo de trabajo #1</h3>
+    </footer>
+
+
 </body>
 </html>

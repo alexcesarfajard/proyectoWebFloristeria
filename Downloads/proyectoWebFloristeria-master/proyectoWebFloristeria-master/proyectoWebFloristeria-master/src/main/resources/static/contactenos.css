@@ -1,10 +1,40 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f9f9f9; /* Fondo blanco */
-    margin: 0;
+.navbar-nav {
+    display: flex;
+    list-style: none; /* Eliminar viñetas */
     padding: 0;
+    margin: 0;
 }
- 
+
+.navbar-nav .nav-item {
+    margin-right: 20px; /* Espacio entre los enlaces */
+}
+
+.navbar-nav .nav-item:last-child {
+    margin-right: 0; /* Eliminar margen al último elemento */
+}
+.text-center {
+    text-align: center;
+}
+
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Altura mínima para centrar verticalmente */
+    background-color: #F4F4F4; /* Color de fondo */
+}
+
+.container {
+    max-width: 800px; /* Ancho máximo del contenedor */
+}
+
+.contacto-imagen img {
+    max-width: 100%;
+    height: auto;
+}
+
 .contactenos-container {
     max-width: 800px;
     margin: 50px auto;
@@ -53,4 +83,10 @@ h1 {
     height: auto;
     border-radius: 8px;
     border: 1px solid #d3d3d3; /* Borde gris claro */
+}
+
+
+.facebook-icon {
+    font-size: 2rem; /* Ajusta el tamaño del icono según sea necesario */
+    color: #4267B2; /* Color del ícono de Facebook */
 }

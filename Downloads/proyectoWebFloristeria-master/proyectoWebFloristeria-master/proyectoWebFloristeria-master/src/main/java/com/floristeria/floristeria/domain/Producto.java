@@ -38,4 +38,14 @@ public class Producto implements Serializable {
     @ManyToOne
     @JoinColumn(name="id_categoria")
     private Categoria categoria;
+    
+    public Producto() {
+
+    }
+
+    public Producto(String descripcion, String rutaImagen, boolean activo) {
+        this.detalle = detalle;
+        this.rutaImagen = rutaImagen;
+        this.activo = activo;
+    }
 }

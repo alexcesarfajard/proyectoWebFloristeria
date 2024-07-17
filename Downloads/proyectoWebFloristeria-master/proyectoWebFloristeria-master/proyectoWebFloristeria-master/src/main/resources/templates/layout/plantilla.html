@@ -17,7 +17,7 @@ Plantilla para la floristeria
  
     <body>
 <!-- ESTE ES EL HEADER DE LAS PAGINAS -->
-<header th:fragment="header">
+<header th:fragment="header" style="border-bottom: 1px solid #ccc; padding: 20px 0;">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
 <div class="container-fluid">
 <a class="navbar-brand" href="/">Floristeria Da'Paz</a>
@@ -65,7 +65,7 @@ Plantilla para la floristeria
         </header>
  
         <!-- CARRUSEL DE FOTOS -->
-<div th:fragment="carrusel-fotos">
+<div th:fragment="carrusel-fotos" style="margin-top: 20px">
 <div id="carouselExample" class="carousel slide">
 <div class="carousel-inner">
 <div class="carousel-item active">
@@ -93,34 +93,34 @@ Plantilla para la floristeria
 </div>
  
         <!-- SECCION UTILIZADA PARA MOSTRAR INFORMACION DE ENVIO, METODO DE PAGO y WHATSAPP -->
-<section th:fragment="informacion-varia">
+        <section th:fragment="informacion-varia" style="margin-top: 20px">
 <div class="container overflow-hidden text-center">
-<div class="row gx-5">
+<div class="row gx-5 aling-items-center">
 <div class="col">
-<div class="p-3" style="background-color: oldlace">
+<div class="p-3 shadow-sm border" style="background-color: oldlace">
 <div class="service">
 <i class="fa fa-4x fa-truck"></i>
-<h3>Servicio a Domicilio </h3>
-<p>Entrega en tiempo record los 365 días del año a cualquier parte del país!!!</p>
+<h3 class="text-dark">Servicio a Domicilio </h3>
+<p class="text-body">Entrega en tiempo record los 365 días del año a cualquier parte del país!!!</p>
 </div>
 </div>
  
                     </div>
 <div class="col">
-<div class="p-3" style="background-color: oldlace">
+<div class="p-3 shadow-sm border" style="background-color: oldlace">
 <div class="service">
 <i class="fa fa-4x fa-credit-card "></i>
-<h3>Formas de pago </h3>
-<p>Efectivo, Sinpe móvil, tranferencias y todo tipo de tarjetas.</p>
+<h3 class="text-dark">Formas de pago </h3>
+<p class="text-body">Efectivo, Sinpe móvil, tranferencias y todo tipo de tarjetas.</p>
 </div>
 </div>
 </div>
 <div class="col">
-<div class="p-3" style="background-color: oldlace">
+<div class="p-3 shadow-sm border" style="background-color: oldlace">
 <div class="service">
 <i class="fa fa-4x fa-whatsapp "></i>
-<h3>Whastapp</h3>
-<p>Recibimos consultas y brindamos asesorías para hacer realidad sus ideas.</p>
+<h3 class="text-dark">Whastapp</h3>
+<p class="text-body">Recibimos consultas y brindamos asesorías para hacer realidad sus ideas.</p>
 </div>
 </div>
 </div>
@@ -129,7 +129,7 @@ Plantilla para la floristeria
 </section>
  
         <!-- ESTE ES EL FOOTER DE LAS PAGINAS -->
-<footer th:fragment="footer" style="background-color: slategray; text-align: center;">
+<footer th:fragment="footer" style="background-color: slategray; text-align: center; margin-top: 20px; padding: 15px 0;">
 <h3 style="font-size: 14px;">&copy Derechos reservados. Creado por grupo de trabajo #1</h3>
 </footer>
 </body>
