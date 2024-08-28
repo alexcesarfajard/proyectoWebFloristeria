@@ -1,0 +1,67 @@
+/*Se crea la base de datos */
+drop schema if exists floristeria;
+drop user if exists adminfloristeria;
+CREATE SCHEMA floristeria;
+ 
+/*Se crea el adminfloristeria y se le pone contraseña flores123*/
+create user 'adminfloristeria' identified by 'flores123';
+ 
+/*Se asignan todos los privilegios al usuario adminfloristeria y se refrescan los privilegios*/
+grant all privileges on floristeria.* to 'adminfloristeria';
+flush privileges;
+ 
+/*Se crea la tabla categoría */
+/* la tabla de categoria contiene categorias de productos ofrecidos*/
+ 
+create table floristeria.categoria (
+  id_categoria INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(50) NOT NULL,
+  descripcion VARCHAR(1000) NOT NULL,
+  ruta_imagen VARCHAR(1024),
+  activo bool,
+  PRIMARY KEY (id_categoria))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+ 
+ 
+/*Se insertan registros en la tabla categorías*/
+INSERT INTO floristeria.categoria (id_categoria,nombre,descripcion,ruta_imagen,activo) VALUES 
+('1','Flores', 'Material principal en arreglos florales', 'https://content.clara.es/medio/2024/02/02/nombres-de-flores_86d2d9d1_240202100505_1280x960.jpg',true),
+('2','Amor y amistad','Arreglo floral dedicado para amistad o amor','https://arteyflorescali.com/549/arreglo-floral-amor-y-amistad.jpg',true),
+('3','Arreglos con globos','Arreglos que pueden utilizar globos y flores en uno mismo','https://www.chocolatestheocr.com/wp-content/uploads/2023/08/Arreglo-con-rosas-y-claveles-globo-Feliz-dia.jpg',true),
+('4','Tributos funebres','Arreglos especiales para velorios o tributos','https://segurofuneral.com/wp-content/uploads/2021/02/blog3.jpg',true),
+('5','Cumpleaños','Arreglos especializados para cumpleaños','https://i.pinimg.com/originals/3f/b4/02/3fb40207375e80653baf239649e7e7f4.jpg',true);
+ 
+/*Se crea la tabla producto*/
+create table floristeria.producto (
+  id_producto INT NOT NULL AUTO_INCREMENT,
+  id_categoria INT NOT NULL,
+  nombre VARCHAR(50) NOT NULL,  
+  detalle VARCHAR(1000) NOT NULL, 
+  precio double,  
+  ruta_imagen varchar(1024),
+  activo bool,
+  PRIMARY KEY (id_producto),
+  foreign key fk_producto_caregoria (id_categoria) references categoria(id_categoria)  
+)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8mb4;
+ 
+/*Se insertan 2 productos por categoria*/
+ 
+INSERT INTO floristeria.producto (id_producto,id_categoria,nombre,detalle,precio,ruta_imagen,activo) VALUES
+(1,1,'Girasol','Arreglo de Girasoles',2000,'https://i.pinimg.com/736x/d3/04/15/d30415e077a36c8a9c84212b172a1e47.jpg',true),
+(2,1,'Rosa Blanca','Arreglo de rosas blancas',3000, 'https://i.pinimg.com/474x/a6/6c/10/a66c10911c7b0e7344d6dd7cce8adfb5.jpg',true),
+(3,2,'Arreglo_02','Flor de girasol amarilla',23000,'https://i.pinimg.com/474x/86/6d/fb/866dfbf989abc868580896820581747a.jpg',true),
+(4,2,'Arreglo_02','Arreglo amor o amistad',23000,'https://i.pinimg.com/474x/3e/8e/0b/3e8e0b10ab8b8c8b54cc42dde60c141b.jpg',true),
+(5,3,'Arreglo_03','Arreglo con globo y flores',25000,'https://i.pinimg.com/474x/c7/ea/92/c7ea92506d5904c49a59fee45af2d7dd.jpg',true),
+(6,3,'Arreglo_04','Arreglo con globo y flores',25000,'https://i.pinimg.com/474x/e3/21/68/e321681f9e8bff980bfbad0c6b48ebd0.jpg',true),
+(7,4,'Arreglo_05','Tributo especial para funeral',26000,'https://i.pinimg.com/474x/73/ae/29/73ae29ce400a79f510f72f7ab62ca315.jpg',true),
+(8,4,'Arreglo_06','Tributo especial para funeral',26000,'https://i.pinimg.com/474x/04/e3/15/04e3150d719b2e5343f8f1b5504b7833.jpg',true),
+(9,5,'Arreglo_07','Arreglo con globo y flores',27000,'https://i.pinimg.com/474x/aa/d6/52/aad6526903da08965be30cbc4b02b125.jpg',true),
+(10,5,'Arreglo_08','Arreglo especial para cumpleanos',27000,'https://i.pinimg.com/474x/5b/ae/09/5bae093404c49a3f64b615ddd76f14da.jpg',true);
+
+
+
+
+
