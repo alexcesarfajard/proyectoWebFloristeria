@@ -1,7 +1,7 @@
 package com.floristeria.floristeria.service.impl;
 
 
-import com.floristeria.floristeria.dao.ProductoDAO;
+import com.floristeria.floristeria.dao.ProductoDao;
 import com.floristeria.floristeria.domain.Producto;
 import com.floristeria.floristeria.service.ProductoService;
 import java.util.List;
@@ -14,7 +14,7 @@ public class ProductoServiceImpl implements ProductoService {
 
     //La anotacion autowired crea un unico objeto sin hacer new.
     @Autowired
-    private ProductoDAO productoDao;
+    private ProductoDao productoDao;
 
     @Override
     @Transactional(readOnly = true)

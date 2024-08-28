@@ -31,6 +31,7 @@ public class ProductoController {
         model.addAttribute("totalProductos", productos.size());
         
         var categorias = categoriaService.getCategorias(false);
+        model.addAttribute("selectedCategoria", categorias);
         model.addAttribute("categorias", categorias);
 
         return "/producto/listado";

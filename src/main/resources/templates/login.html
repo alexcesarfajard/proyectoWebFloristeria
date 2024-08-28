@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Iniciar Sesión - Floristeria Da'Paz</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="text-center">Iniciar Sesión</h2>
+                        </div>
+                        <div class="card-body">
+                            <form th:action="@{/login}" method="post">
+                                <div th:if="${param.error}" class="alert alert-danger" role="alert">
+                                    Usuario o contraseña incorrectos.
+                                </div>
+                                <div th:if="${param.logout}" class="alert alert-success" role="alert">
+                                    Has cerrado sesión correctamente.
+                                </div>
+                                <div th:if="${param.registroExitoso}" class="alert alert-success" role="alert">
+                                    Registro exitoso. Por favor, inicia sesión.
+                                </div>
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Usuario</label>
+                                    <input type="text" class="form-control" id="username" name="username" required autofocus>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password" class="form-label">Contraseña</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <div class="d-grid gap-2">
+                                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="card-footer text-center">
+                            <p>¿No tienes cuenta? <a th:href="@{/registro}">Regístrate aquí</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

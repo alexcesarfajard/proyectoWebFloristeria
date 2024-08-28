@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Contactenos - Floristeria Da'Paz</title>
+        <link rel="stylesheet" th:href="@{/css/contactanos.css}">
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <div class="container main-content">
+            <div class="hero-section">
+                <h1 class="main-title">En Floristeria Da'Paz</h1>
+                <p class="lead-text">"En verdad, eos y acusación, y justo odio..."</p>
+            </div>
+            
+            <div class="contacto-imagen">
+                <img th:src="@{/img/flores-bonitas.jpg}" alt="Floristeria Da'Paz" class="img-fluid" />
+            </div>
+            
+            <div class="testimonios-section">
+                <h2>Testimonios</h2>
+                <div class="testimonio">
+                    <p>1. "Excelente servicio y flores hermosas."</p>
+                </div>
+                <div class="testimonio">
+                    <p>2. "Siempre entregan a tiempo y con una calidad excepcional."</p>
+                </div>
+                <div class="testimonio">
+                    <p>3. "Las mejores flores para cualquier ocasión."</p>
+                </div>
+            </div>
+            
+            <div class="contactenos-container">
+                <h2>Contáctenos</h2>
+                <div class="contacto-info">
+                    <p><i class="fab fa-facebook facebook-icon"></i> <a href="https://www.facebook.com/dapazflores" target="_blank">Floristeria Da'Paz</a></p>
+                    <p><i class="fab fa-whatsapp whatsapp-icon"></i> <a href="tel:+50689214999">8921 4999</a></p>
+                </div>
+            </div>
+            
+            <div class="ubicacion-section">
+                <h2>Ubicación</h2>
+                <p class="direccion">50 norte y 25 oeste de la plaza de deportes Patarra, Desamparados, Costa Rica</p>
+                <div class="mapa-container">       
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1652.6206781374933!2d-84.03602678416836!3d9.88250270829822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e237793442bb%3A0xa3dc7ee8ad61a1f6!2sPlaza%20de%20f%C3%BAtbol%20Patarr%C3%A1!5e0!3m2!1ses!2scr!4v1721167964657!5m2!1ses!2scr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head th:replace="~{layout/plantilla :: head}">
+    <title>Modificar Rol de Usuario</title>
+</head>
+<body>
+    <header th:replace="~{layout/plantilla :: header}"></header>
+
+    <div class="container">
+        <h2>Modificar Rol de Usuario</h2>
+        <form th:action="@{/usuario/guardarRol}" method="post">
+            <input type="hidden" th:value="${usuario.idUsuario}" name="idUsuario" />
+            
+            <div class="mb-3">
+                <label for="username">Nombre de Usuario:</label>
+                <input type="text" th:value="${usuario.username}" class="form-control" readonly />
+            </div>
+
+            <div class="mb-3">
+                <label for="rol">Seleccionar Rol:</label>
+                <select name="rol" class="form-select" required>
+                    <option th:each="rol : ${rolesDisponibles}" th:value="${rol}" th:text="${rol}" 
+                    th:selected="${#lists.contains(usuario.roles, rol)}"></option>
+                </select>
+            </div>
+
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+
+    <footer th:replace="~{layout/plantilla :: footer}"></footer>
+</body>
+</html>

@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<!--
-fragmentos de productos
--->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="~{layout/plantilla :: head}">
         <title>Floristeria Da'Paz</title>
     </head>
     <body>
 
         <!-- 1 Sección para crear el boton de agregar... llamará a una ventana modal-->
-        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light" sec:authorize="hasRole('ADMIN')">
             <div class="container">
                 <div class="row">
                     <div class="col-md-3">   
@@ -27,7 +25,7 @@ fragmentos de productos
         </section>
 
         <!-- 2 Fragmento para agregar producto, es la ventana modal -->
-        <section th:fragment="agregarProducto">
+        <section th:fragment="agregarProducto" sec:authorize="hasRole('ADMIN')">
             <div id="agregarProducto" 
                  class="modal fade" 
                  tabindex="-1" 
@@ -42,37 +40,29 @@ fragmentos de productos
                         <form th:action="@{/producto/guardar}" th:object="${producto}"
                               method="POST" class="was-validated" enctype="multipart/form-data">
                             <div class="modal-body">
-
                                 <div class="mb-3">
-                                    <label for="idCategoria">Categoria</label>
-                                    <select name="categoria.idCategoria" 
-                                            class="form-select">
-                                        <option th:each="c : ${categorias}"
-                                                th:value="${c.idCategoria}">[[${c.descripcion}]]</option>
+                                    <label for="categoria.idCategoria">Categoria</label>
+                                    <select name="categoria.idCategoria" class="form-select">
+                                        <option th:each="c : ${categorias}" 
+                                                th:value="${c.idCategoria}">[[${c.nombre}]]</option>
                                     </select>
                                 </div>
-
                                 <div class="mb-3">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" class="form-control" name="nombre" required="true"/>
                                 </div>
-
                                 <div class="mb-3">
-                                    <label for="descripcion">Detalle]</label>
+                                    <label for="detalle">Detalle</label>
                                     <input type="text" class="form-control" name="detalle" required="true"/>
                                 </div>
-
                                 <div class="mb-3">
                                     <label for="precio">Precio</label>
-                                    <input type="text" class="form-control" name="precio" required="true"/>
+                                    <input type="number" class="form-control" name="precio" required="true"/>
                                 </div>
-                                <!--
                                 <div class="mb-3">
-                                    <label for="activo">Activo</label>
-                                    <input class="form-check-input" type="checkbox" name="activo" id="activo"/>
+                                    <label for="existencias">Existencias</label>
+                                    <input type="number" class="form-control" name="precio" required="true"/>
                                 </div>
-                                -->
-
                                 <div class="mb-3">
                                     <label for="imagen">Ruta de imagen</label>
                                     <input class="form-control" type="file" name="imagenFile" onchange="readURL(this);"/>
@@ -88,7 +78,7 @@ fragmentos de productos
             </div>
         </section>
 
-        <!-- 3 Sección principal para mostrar la informaccion de la entidad producto -->
+        <!-- Sección principal para mostrar la información de la entidad producto -->
         <section th:fragment="listadoProductos" id="productos">
             <div class="container">
                 <div class="row">
@@ -100,13 +90,16 @@ fragmentos de productos
                             <div th:if="${productos != null and !productos.empty}">
                                 <table class="table table-striped table-hover">
                                     <thead class="table-dark">
-                                        <tr><th>#</th>
+                                        <tr>
+                                            <th>#</th>
                                             <th>Nombre</th>
                                             <th>Detalle</th>
                                             <th>Precio</th>
-                                            <th>Categoria</th>
+                                            <th>Existencias</th>
+                                            <th>Categoría</th>
                                             <th>Activo</th>
-                                            <th></th></tr>
+                                            <th sec:authorize="hasRole('ADMIN')">Acciones</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
                                         <tr th:each="producto, contador : ${productos}">
@@ -114,14 +107,18 @@ fragmentos de productos
                                             <td>[[${producto.nombre}]]</td>
                                             <td>[[${producto.detalle}]]</td>
                                             <td>[[${producto.precio}]]</td>
-                                            <td>[[${producto.categoria.descripcion}]]</td>
-                                            <td th:text="${producto.activo} ? 'Activa' : 'Inactiva'" />
-                                            <td><a th:href="@{/producto/eliminar/}+${producto.idProducto}"
+                                            <td>[[${producto.existencias}]]</td>
+                                            <td>[[${producto.categoria != null ? producto.categoria.descripcion : 'Sin categoría'}]]</td>
+                                            <td th:text="${producto.activo} ? 'Activa' : 'Inactiva'"></td>
+                                            <td sec:authorize="hasRole('ADMIN')">
+                                                <a th:href="@{/producto/eliminar/}+${producto.idProducto}"
                                                    class="btn btn-danger">
-                                                    <i class="fas fa-trash"></i>Eliminar</a>
+                                                    <i class="fas fa-trash"></i> Eliminar</a>
                                                 <a th:href="@{/producto/modificar/}+${producto.idProducto}"
                                                    class="btn btn-success">
-                                                    <i class="fas fa-pencil"></i>Modificar</a></td></tr>
+                                                    <i class="fas fa-pencil"></i> Modificar</a>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -141,10 +138,9 @@ fragmentos de productos
                 </div>
             </div>
         </section>
-        <!-- FIN DE Sección principal para mostrar la informaccion de la entidad producto -->
 
         <!-- 4 Fragmento que se utiliza en la página modifica.html -->
-        <section th:fragment="editarProducto">
+        <section th:fragment="editarProducto" sec:authorize="hasRole('ADMIN')">
             <div class="row">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -165,7 +161,6 @@ fragmentos de productos
                                                 <h4>Actualizar</h4>
                                             </div>
                                             <div class="card-body">
-
                                                 <div class="mb-3">
                                                     <label for="idCategoria">Categoria</label>
                                                     <select name="categoria.idCategoria" th:field="*{categoria.idCategoria}"
@@ -174,28 +169,30 @@ fragmentos de productos
                                                                 th:value="${c.idCategoria}">[[${c.descripcion}]]</option>
                                                     </select>
                                                 </div>
-
                                                 <div class="mb-3">
                                                     <label for="nombre">Nombre</label>
                                                     <input type="text" class="form-control" 
                                                            name="nombre" th:field="*{nombre}"
                                                            required="true">
                                                 </div>
-
                                                 <div class="mb-3">
                                                     <label for="descripcion">Detalle</label>
                                                     <input type="text" class="form-control" 
                                                            name="detalle" th:field="*{detalle}"
                                                            required="true">
                                                 </div>
-
                                                 <div class="mb-3">
                                                     <label for="precio">Precio</label>
                                                     <input type="number" class="form-control" 
                                                            name="precio" 
                                                            th:field="*{precio}"required="true"/>
                                                 </div>
-
+                                                <div class="mb-3">
+                                                    <label for="existencias">Existencias</label>
+                                                    <input type="number" class="form-control" 
+                                                           name="existencias" 
+                                                           th:field="*{existencias}"required="true"/>
+                                                </div>
                                                 <div class="mb-3">
                                                     <label for="activo">Activo</label>
                                                     <input class="form-check-input" 
@@ -215,13 +212,14 @@ fragmentos de productos
                                     </div>
                                 </div>
                             </div>
+                        </div>
                     </form>
                 </div>
             </div>
         </section>
 
         <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
-        <section th:fragment="botonesEditar">
+        <section th:fragment="botonesEditar" sec:authorize="hasRole('ADMIN')">
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
                     <div class="col-md-4 d-grid">

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="~{layout/plantilla :: head}">
+        <title>Perfil de Usuario - Floristeria Da'Paz</title>
+    </head>
+    <body>
+        <header th:replace="~{layout/plantilla :: header}"/>
+        
+        <div class="container mt-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="text-center">Perfil de Usuario</h2>
+                        </div>
+                        <div class="card-body">
+                            <div th:if="${usuario != null}">
+                                <div class="row mb-3">
+                                    <div class="col-md-4 font-weight-bold">Nombre de Usuario:</div>
+                                    <div class="col-md-8" th:text="${usuario.username}"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 font-weight-bold">Nombre:</div>
+                                    <div class="col-md-8" th:text="${usuario.nombre}"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 font-weight-bold">Apellidos:</div>
+                                    <div class="col-md-8" th:text="${usuario.apellidos}"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 font-weight-bold">Correo Electrónico:</div>
+                                    <div class="col-md-8" th:text="${usuario.correo}"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 font-weight-bold">Teléfono:</div>
+                                    <div class="col-md-8" th:text="${usuario.telefono}"></div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-md-4 font-weight-bold">Roles:</div>
+                                    <div class="col-md-8">
+                                        <span th:each="rol : ${usuario.roles}" th:text="${rol.nombre + ' '}"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div th:unless="${usuario != null}" class="alert alert-warning">
+                                No se pudo cargar la información del usuario.
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <a th:href="@{/}" class="btn btn-primary">Volver al Inicio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer th:replace="~{layout/plantilla :: footer}"/>
+    </body>
+</html>

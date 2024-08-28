@@ -13,11 +13,11 @@ public class CategoriaServiceImpl
         implements CategoriaService{
 
     @Autowired 
-    private CategoriaDAO categoriaDao;
+    private CategoriaDAO categoriaDAO;
     
     @Override
     public List<Categoria> getCategorias(boolean activos) {
-        var lista = categoriaDao.findAll();
+        var lista = categoriaDAO.findAll();
         
         if (activos){ // no leer los inactivos
             //lista.removeIf(c -> !c.isActivo());
@@ -28,16 +28,16 @@ public class CategoriaServiceImpl
 
     @Override
     public Categoria getCategoria(Categoria categoria) {
-        return categoriaDao.findById(categoria.getIdCategoria()).orElse(null);
+        return categoriaDAO.findById(categoria.getIdCategoria()).orElse(null);
     }
 
     @Override
     public void save(Categoria categoria) {
-        categoriaDao.save(categoria);
+        categoriaDAO.save(categoria);
     }
 
     @Override
     public void delete(Categoria categoria) {
-        categoriaDao.delete(categoria);
+        categoriaDAO.delete(categoria);
     }
 }
